@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salon Services – Reviews</title>
+
+</head>
+
+<body>
+
+<h1>Salon Services & Reviews</h1>
+
+<script>
+    function starHTML(count) {
+        let stars = "";
+        for (let i = 0; i < count; i++) stars += "★";
+        for (let i = count; i < 5; i++) stars += "☆";
+        return stars;
+    }
+</script>
+
+<!-- ::::::::::::: SERVICE 1 ::::::::::::: -->
+<div class="service">
+    <h2>Haircut</h2>
+    <p>A full professional haircut service with styling.</p>
+
+    <div class="reviews" id="reviews-haircut">
+        <strong>Customer Reviews:</strong>
+
+        <div class="review">
+            <div class="avatar">S</div>
+            <div class="review-content">
+                <div class="review-name">Sarah</div>
+                <div class="stars">★★★★★</div>
+                <div>Amazing haircut! The stylist really understood what I wanted.</div>
+            </div>
+        </div>
+
+        <div class="review">
+            <div class="avatar">N</div>
+            <div class="review-content">
+                <div class="review-name">Nora</div>
+                <div class="stars">★★★★★</div>
+                <div>Fast service and very clean area.</div>
+            </div>
+        </div>
+
+        <div class="review">
+            <div class="avatar">L</div>
+            <div class="review-content">
+                <div class="review-name">Layla</div>
+                <div class="stars">★★★★★</div>
+                <div>Great work.</div>
+            </div>
+        </div>
+    </div>
+
+    <input id="name-haircut" placeholder="Your Name (optional)">
+    <select id="rating-haircut">
+        <option value="">Select Rating (required)</option>
+        <option value="5">★★★★★ - 5 Stars</option>
+        <option value="4">★★★★☆ - 4 Stars</option>
+        <option value="3">★★★☆☆ - 3 Stars</option>
+        <option value="2">★★☆☆☆ - 2 Stars</option>
+        <option value="1">★☆☆☆☆ - 1 Star</option>
+    </select>
+    <textarea id="input-haircut" placeholder="Write your review (optional)..."></textarea>
+    <button class="btn" onclick="addReview('haircut')">Submit Review</button>
+</div>
+
+<!-- ::::::::::::: SERVICE 2 ::::::::::::: -->
+<div class="service">
+    <h2>Manicure</h2>
+    <p>Includes nail shaping, polishing, and hand treatment.</p>
+
+    <div class="reviews" id="reviews-manicure">
+        <strong>Customer Reviews:</strong>
+
+        <div class="review">
+            <div class="avatar">A</div>
+            <div class="review-content">
+                <div class="review-name">Aisha</div>
+                <div class="stars">★★★★★</div>
+                <div>Beautiful colors and perfect shape!</div>
+            </div>
+        </div>
+
+        <div class="review">
+            <div class="avatar">J</div>
+            <div class="review-content">
+                <div class="review-name">Jenan</div>
+                <div class="stars">★★★★★</div>
+                <div>Very relaxing and clean.</div>
+            </div>
+        </div>
+
+        <div class="review">
+            <div class="avatar">D</div>
+            <div class="review-content">
+                <div class="review-name">Dahlia</div>
+                <div class="stars">★★★★☆</div>
+                <div>The staff is super friendly.</div>
+            </div>
+        </div>
+    </div>
+
+    <input id="name-manicure" placeholder="Your Name (optional)">
+    <select id="rating-manicure">
+        <option value="">Select Rating (required)</option>
+        <option value="5">★★★★★ - 5 Stars</option>
+        <option value="4">★★★★☆ - 4 Stars</option>
+        <option value="3">★★★☆☆ - 3 Stars</option>
+        <option value="2">★★☆☆☆ - 2 Stars</option>
+        <option value="1">★☆☆☆☆ - 1 Star</option>
+    </select>
+    <textarea id="input-manicure" placeholder="Write your review (optional)..."></textarea>
+    <button class="btn" onclick="addReview('manicure')">Submit Review</button>
+</div>
+
+<!-- ::::::::::::: SERVICE 3 ::::::::::::: -->
+<div class="service">
+    <h2>Hair Coloring</h2>
+    <p>Professional hair coloring with premium products.</p>
+
+    <div class="reviews" id="reviews-coloring">
+        <strong>Customer Reviews:</strong>
+
+        <div class="review">
+            <div class="avatar">M</div>
+            <div class="review-content">
+                <div class="review-name">Mira</div>
+                <div class="stars">★★★★★</div>
+                <div>The color came out exactly like I wanted!</div>
+            </div>
+        </div>
+
+        <div class="review">
+            <div class="avatar">R</div>
+            <div class="review-content">
+                <div class="review-name">Reem</div>
+                <div class="stars">★★★★★</div>
+                <div>No damage and beautiful results.</div>
+            </div>
+        </div>
+
+        <div class="review">
+            <div class="avatar">H</div>
+            <div class="review-content">
+                <div class="review-name">Hana</div>
+                <div class="stars">★★★★☆</div>
+                <div>Friendly staff and nice colors.</div>
+            </div>
+        </div>
+    </div>
+
+    <input id="name-coloring" placeholder="Your Name (optional)">
+    <select id="rating-coloring">
+        <option value="">Select Rating (required)</option>
+        <option value="5">★★★★★ - 5 Stars</option>
+        <option value="4">★★★★☆ - 4 Stars</option>
+        <option value="3">★★★☆☆ - 3 Stars</option>
+        <option value="2">★★☆☆☆ - 2 Stars</option>
+        <option value="1">★☆☆☆☆ - 1 Star</option>
+    </select>
+    <textarea id="input-coloring" placeholder="Write your review (optional)..."></textarea>
+    <button class="btn" onclick="addReview('coloring')">Submit Review</button>
+</div>
+
+<script>
+    function addReview(service) {
+        let name = document.getElementById(`name-${service}`).value.trim();
+        let rating = document.getElementById(`rating-${service}`).value;
+        let comment = document.getElementById(`input-${service}`).value.trim();
+        let reviewsDiv = document.getElementById(`reviews-${service}`);
+
+        if (rating === "") {
+            alert("Rating is required.");
+            return;
+        }
+
+        if (name === "") name = "Anonymous";
+        if (comment === "") comment = "";
+
+        let avatarLetter = name.charAt(0).toUpperCase();
+
+        let reviewHTML = `
+        <div class="review">
+            <div class="avatar">${avatarLetter}</div>
+            <div class="review-content">
+                <div class="review-name">${name}</div>
+                <div class="stars">${starHTML(rating)}</div>
+                <div>${comment}</div>
+            </div>
+        </div>`;
+
+        reviewsDiv.innerHTML += reviewHTML;
+
+        document.getElementById(`name-${service}`).value = "";
+        document.getElementById(`rating-${service}`).value = "";
+        document.getElementById(`input-${service}`).value = "";
+    }
+</script>
+
+</body>
+</html>
