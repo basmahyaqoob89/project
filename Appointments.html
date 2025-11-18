@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+        .box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 350px;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            margin: 8px;
+        }
+        .login-btn {
+            background-color: #e58acb;
+            color: white;
+        }
+        .pink-btn {
+            background-color: #e58acb;
+            color: white;
+        }
+        table {
+            margin: 0 auto;
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, td, th {
+            border: 1px solid #aaa;
+            padding: 10px;
+        }
+        th {
+            background-color: #f7d7ef;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    // Read login status
+    let isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
+    let appointments = [];  
+    appointments = [{service:"Haircut",date:"2025-11-20",time:"4:00 PM",with:"Sara"}];
+</script>
+
+<h1>📅 My Appointments</h1>
+
+<div id="content"></div>
+
+<script>
+    const content = document.getElementById('content');
+
+    /* ───────────────────────────────
+       CASE 1: USER NOT LOGGED IN
+    ─────────────────────────────── */
+    if (!isLoggedIn) {
+        content.innerHTML = `
+            <div class="box">
+                <h3>You are not logged in</h3>
+                <p>Please log in to view your appointments.</p>
+                <button class="login-btn" onclick="window.location.href='login.html'">
+                    Log In
+                </button>
+            </div>
+        `;
+    }
+
+    /* ───────────────────────────────
+       CASE 2: LOGGED IN BUT NO APPOINTMENTS
+    ─────────────────────────────── */
+    else if (appointments.length === 0) {
+        content.innerHTML = `
+            <div class="box">
+                <h2>No Appointments Found</h2>
+                <p>You currently have no appointments.</p>
+
+                <button class="pink-btn" onclick="window.location.href='booking.html'">
+                    Book Now
+                </button>
+
+                <button onclick="window.location.href='index.html'">
+                    Take a Look
+                </button>
+
+                <br><br>
+                <button onclick="localStorage.removeItem('loggedIn'); location.reload();">
+                    Log Out
+                </button>
+            </div>
+        `;
+    }
+
+    /* ───────────────────────────────
+       CASE 3: LOGGED IN WITH APPOINTMENTS
+    ─────────────────────────────── */
+    else {
+        let rows = appointments.map(a => `
+            <tr>
+                <td>${a.service}</td>
+                <td>${a.date}</td>
+                <td>${a.time}</td>
+                <td>${a.with}</td>
+            </tr>
+        `).join('');
+
+        content.innerHTML = `
+            <h2>Your Appointments</h2>
+
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>With</th>
+                </tr>
+                ${rows}
+            </table>
+
+            <br>
+            <button onclick="window.location.href='index.html'">
+                Back Home
+            </button>
+
+            <button onclick="localStorage.removeItem('loggedIn'); location.reload();">
+                Log Out
+            </button>
+        `;
+    }
+</script>
+
+</body>
+</html>
