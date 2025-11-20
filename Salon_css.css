@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    font-family: "Lucida Bright", sans-serif;
+    background-color: #edc1d2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
+.login {
+    background: white;
+    width: 400px;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px #0002;
+    text-align: center;
+}
+
+.login h2 {
+    color: #143230;
+    margin-bottom: 25px;
+}
+
+.login input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 2px solid #536b53; 
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.login button {
+    width: 100%;
+    padding: 16px;
+    font-size: 18px;
+    background-color: #143230; 
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.login p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: black;
+}
+
+.login p a {
+    color: #FFB6C0; 
+    text-decoration: none;
+}
+
+.signup {
+    background: white;
+    width: 400px;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px #0002;
+    text-align: center;
+}
+
+.signup h2 {
+    color: #143230;
+    margin-bottom: 25px;
+}
+
+.signup input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 2px solid #536b53; 
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.signup button {
+    width: 100%;
+    padding: 16px;
+    font-size: 18px;
+    background-color: #143230;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.signup p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: black;
+}
+
+.signup p a {
+    color: #FFB6C0;
+    text-decoration: none;
+}
