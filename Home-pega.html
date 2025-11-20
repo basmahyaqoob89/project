@@ -120,27 +120,134 @@
             color: white;
         }
 
-        /* SOCIAL PROOF */
-        .social-proof {
-            text-align: center;
-            padding: 50px;
-            background: linear-gradient(to bottom, #C3C3C3, #ffffff);
+        /* ==FATIMA REVIEW==== NEW TESTIMONIAL SECTION (with your carousel)
+        the NEW REVIEW CSS  ====== */
+
+        .carousel-section {
+            padding: 60px 20px;
+            background: #ffffffb0;
         }
 
-        .social-proof h3 {
-            font-family: 'Cormorant', serif;
-            font-size: 30px;
-            margin-bottom: 20px;
+        :root{
+          --accent: #6c63ff;
+          --bg: #ffffff;
+          --muted: #666;
+          --card-bg: #fafafa;
+          --shadow: 0 8px 25px rgba(0,0,0,0.07);
+          --max-width: 950px;
+          --gap: 22px;
+          --transition: 450ms cubic-bezier(.22,.9,.35,1);
         }
 
-        .review {
-            background: #fff;
-            padding: 20px;
-            width: 60%;
-            margin: auto;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px #0001;
-            font-style: italic;
+        .carousel-wrap{
+          width:100%;
+          max-width:var(--max-width);
+          margin:auto;
+        }
+
+        .carousel-header{
+          margin-bottom:22px;
+          text-align:center;
+        }
+
+        .carousel-header h2{
+          margin:0;
+          font-size:1.8rem;
+          font-weight:700;
+        }
+
+        .carousel-header p{
+          margin:4px 0 0;
+          color:var(--muted);
+          font-size:1rem;
+        }
+
+        .carousel-viewport{
+          overflow:hidden;
+          border-radius:18px;
+          background:#fff;
+          padding:25px;
+          box-shadow:var(--shadow);
+        }
+
+        .carousel-track{
+          display:flex;
+          gap:var(--gap);
+          transition:transform var(--transition);
+        }
+
+        .testimonial{
+          min-width: calc(100% - var(--gap));
+          background:var(--card-bg);
+          border-radius:16px;
+          padding:22px;
+          display:flex;
+          gap:18px;
+          border:1px solid #eee;
+        }
+
+        .avatar{
+          width:70px;
+          height:70px;
+          border-radius:50%;
+          background:#e5e5e5;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+        }
+
+        blockquote{
+          margin:0;
+          font-size:1.1rem;
+          line-height:1.65;
+        }
+
+        .rating{ color:#f6b100; }
+
+        .controls{
+          display:flex;
+          justify-content:space-between;
+          margin-top:18px;
+        }
+
+        .controls button{
+          padding:10px 14px;
+          border:none;
+          background:#eee;
+          border-radius:10px;
+          font-size:1.2rem;
+          cursor:pointer;
+        }
+
+        .dots{
+          display:flex;
+          gap:10px;
+          justify-content:center;
+          margin-top:16px;
+        }
+
+        .dot{
+          width:12px;height:12px;border-radius:50%;
+          background:#cfcfcf;
+          border:none;
+          cursor:pointer;
+        }
+
+        .dot[aria-pressed="true"]{
+          background:var(--accent);
+        }
+
+        .see-all{
+          text-align:center;
+          margin-top:22px;
+        }
+
+        .see-all a{
+          padding:10px 22px;
+          border-radius:10px;
+          background:var(--accent);
+          color:#fff;
+          text-decoration:none;
         }
 
         /* FOOTER */
@@ -182,17 +289,103 @@
             <button>Explore Our Services</button>
         </div>
     </section>
-    <section class="social-proof">
-        <h3>What Our Clients Say</h3>
-        <div class="review">
-            ⭐⭐⭐⭐⭐  
-            <br><br>
-            “Exceptional service, calming atmosphere, and truly luxurious results.”
+     <!-- ⭐⭐⭐ THE NEW REVIEW SECTION ⭐⭐⭐ -->
+    <section class="carousel-section">
+        <div class="carousel-wrap">
+
+            <div class="carousel-header">
+                <h2>آراء العملاء</h2>
+                <p>تجارب حقيقية من زوارنا</p>
+            </div>
+
+            <div class="carousel">
+                <div class="carousel-viewport" id="viewport">
+                    <div class="carousel-track" id="track">
+
+                        <article class="testimonial">
+                            <div class="avatar">صورة</div>
+                            <div>
+                                <blockquote>"الخدمة كانت رائعة جدًا وتعامل الموظفات راقي لأبعد حد."</blockquote>
+                                <div class="meta"><span class="rating">★★★★★</span></div>
+                            </div>
+                        </article>
+
+                        <article class="testimonial">
+                            <div class="avatar">صورة</div>
+                            <div>
+                                <blockquote>"شغل نظيف وسريع، أكيد مارح تكون آخر زيارة!"</blockquote>
+                                <div class="meta"><span class="rating">★★★★☆</span></div>
+                            </div>
+                        </article>
+
+                        <article class="testimonial">
+                            <div class="avatar">
+                                  <!-- حطي صورة اللوقو هنا -->
+                                  <img src="imgs/customer1.jpg" alt="عميل" />
+
+                            </div>
+                            <div>
+                                <blockquote>"مكان جداً مريح ونتيجة الشعر طلعت أفضل مما توقعت."</blockquote>
+                                <div class="meta"><span class="rating">★★★★★</span></div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="prevBtn">‹</button>
+                    <button id="nextBtn">›</button>
+                </div>
+
+                <div class="dots" id="dots"></div>
+
+                <div class="see-all">
+                    <a href="reviewPage.html">جميع الآراء</a>
+                </div>
+
+            </div>
         </div>
-    </section>>
+    </section>
+
     <footer>
         © 2025 AMARA Beauty Salon — All Rights Reserved
     </footer>
+
+<script>
+(function(){
+  const track = document.getElementById('track');
+  const slides = Array.from(track.children);
+  const dots = document.getElementById('dots');
+  let index = 0;
+
+  function update(){
+    track.style.transform = `translateX(-${index * (slides[0].offsetWidth + 22)}px)`;
+    Array.from(dots.children).forEach((d,i)=> d.setAttribute("aria-pressed", i===index));
+  }
+
+  function buildDots(){
+    dots.innerHTML="";
+    for(let i=0;i<slides.length;i++){
+      const b=document.createElement("button");
+      b.className="dot";
+      b.addEventListener("click",()=>{ index=i; update(); });
+      dots.appendChild(b);
+    }
+  }
+
+  document.getElementById("nextBtn").onclick=()=>{ index = (index+1)%slides.length; update(); };
+  document.getElementById("prevBtn").onclick=()=>{ index = (index-1+slides.length)%slides.length; update(); };
+
+  setInterval(()=>{
+    index = (index+1) % slides.length;
+    update();
+  }, 3500);
+
+  buildDots();
+  update();
+})();
+</script>
 
 </body>
 </html>
