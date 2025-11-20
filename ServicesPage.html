@@ -1,0 +1,56 @@
+<!-- ======================== SERVICES PAGE ======================== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Services Page</title>
+<style>
+body { font-family: "Lato", Arial, sans-serif; padding: 20px; background: #f5f1f8; color: #143230; }
+h1 { text-align: center; font-family: "Cormorant", serif; color: #edc1d2; font-size: 36px; margin-bottom: 40px; }
+
+
+.services-container {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 25px;
+}
+
+
+.service-card {
+background: #fff;
+border-radius: 20px;
+padding: 15px;
+text-align: center;
+cursor: pointer;
+box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+transition: 0.3s ease;
+transform: translateY(20px);
+opacity: 0;
+animation: fadeInUp 0.5s forwards;
+}
+.service-card:hover { transform: scale(1.05); box-shadow: 0 12px 24px rgba(0,0,0,0.12); }
+
+
+.service-card img { width: 100%; height: 220px; object-fit: cover; border-radius: 15px; }
+.service-card h2 { font-family: "Montserrat", sans-serif; color: #536b53; margin-top: 12px; }
+
+
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+
+<h1>Service Categories</h1>
+<div class="services-container">
+<div class="service-card" onclick="location.href='servicesList.html?type=hair'"><img src="h2.jpg" alt="Hair Service"><h2>Hair Services</h2></div>
+<div class="service-card" onclick="location.href='servicesList.html?type=makeup'"><img src="m1.jpg" alt="Makeup Service"><h2>Makeup Services</h2></div>
+<div class="service-card" onclick="location.href='servicesList.html?type=nails'"><img src="n.jpg" alt="Nail Service"><h2>Manicure & Pedicure Services</h2></div>
+<div class="service-card" onclick="location.href='servicesList.html?type=skincare'"><img src="s1.jpg" alt="Skin Care"><h2>SkinCare Services</h2></div>
+<div class="service-card" onclick="location.href='servicesList.html?type=lashes'"><img src="l.jpg" alt="Lash Service"><h2>Eyelash Services</h2></div>
+<div class="service-card" onclick="location.href='servicesList.html?type=eyebrows'"><img src="b.jpg" alt="Eyebrow Service"><h2>Eyebrow Services</h2></div>
+</div>
+
+
+</body>
+</html>

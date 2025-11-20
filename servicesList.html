@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Service Booking</title>
+<style>
+  body {
+    font-family: Lato, Arial, sans-serif;
+    background: #f5f1f8;
+    padding: 30px;
+     background-repeat: repeat;  
+  background-size: 100px 100px; /* حجم الصورة + الفراغ بينها */
+  background-position: top left;
+  }
+
+  h1 {
+    text-align: center;
+    color: #143230; 
+    font-size: 34px;
+    margin-bottom: 40px;
+  }
+
+  .service-item {
+    background: #fff;
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .service-item:hover {
+    transform: scale(1.03) translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+  }
+
+  .service-name {
+    font-size: 20px;
+    color: #143230;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .service-description {
+    font-size: 14px;
+    color: #c3c3c3; 
+    margin-bottom: 12px;
+  }
+
+  .price-tag {
+    background: #536b53; 
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 5px;
+    min-width: 60px;
+  }
+
+  .book-btn {
+    background: #edc1d2; 
+    color: #143230;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: block; 
+    text-align: center;
+  }
+
+  .book-btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    top:0; left:0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+  .modal-content {
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+  }
+  .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #143230;
+  }
+  .modal label {
+    font-weight: 600;
+    color: #143230;
+    display: block;
+    margin: 10px 0 5px 0;
+  }
+  .modal select, .modal input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #d2b6df;
+    background: #faf7fc;
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+  .confirm-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(135deg,#bd7ccf,#a25ab7);
+  }
+  .confirm-btn:hover {
+    background: linear-gradient(135deg,#a766b8,#8f4fa1);
+  }
+</style>
+</head>
+<body>
+
+<h1>Service Details</h1>
+<div id="content"></div>
+
+<!-- Modal -->
+<div class="modal" id="bookingModal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <h2 id="modalServiceName" style="color:#143230; margin-bottom:10px;"></h2>
+    <p id="modalPrice" class="price-tag"></p>
+
+    <div id="modalOptionsContainer"></div>
+
+    <label>Select Date:</label>
+    <input type="date" id="modalDate">
+
+    <label>Choose Time:</label>
+    <select id="modalTime"></select>
+
+    <label>Choose Worker:</label>
+    <select id="modalWorker"></select>
+
+    <button class="confirm-btn" id="confirmBooking">Go to Payment</button>
+  </div>
+</div>
+
+<script>
+const pageBackgrounds = {
+  hair: 'bh3.png',
+  makeup: 'bm.png',
+  nails: 'bn1.png',
+  lashes: 'bl2.png',
+  eyebrows: 'bb4.png',
+  skincare: 'bs2.png'
+};
+
+const data = {
+  hair: {
+    title: 'Hair Services',
+    services: [
+      { name: 'Haircut', description:'Professional haircut for all lengths.', options:[{name:'Short',price:'60 SAR'},{name:'Medium',price:'80 SAR'},{name:'Long',price:'115 SAR'},{name:'Very Long',price:'175 SAR'}], times:['10:00 AM','11:00 AM','01:00 PM'], workers:['Sara','Lama','Joud'] },
+      { name: 'Blow-dry', description:'Quick and stylish blow-dry for any occasion.', options:[{name:'Short',price:'60 SAR'},{name:'Medium',price:'80 SAR'}], times:['09:00 AM','11:00 AM','03:00 PM'], workers:['Sara','Lama'] },
+      { name: 'Styling with Iron', description:'Create sleek or curly styles with professional tools.', options:[{name:'Short',price:'250 SAR'},{name:'Medium',price:'300 SAR'}], times:['10:00 AM','12:00 PM','02:00 PM'], workers:['Joud','Lama'] }
+    ]
+  },
+  makeup: {
+    title: 'Makeup Services',
+    services: [
+      { name:'Soft Makeup', description:'Natural, soft look for daily or casual events.', price:'230 SAR', times:['10:00 AM','12:00 PM','02:00 PM'], workers:['Ayar','Rahaf'] },
+      { name:'Evening Makeup', description:'Elegant look for parties and special events.', price:'300 SAR', times:['11:00 AM','01:00 PM','03:00 PM'], workers:['Rahaf','Ayar'] },
+      { name:'Special Makeup', description:'High-end makeup for weddings or photo shoots.', price:'400 SAR', times:['09:00 AM','12:00 PM','03:00 PM'], workers:['Ayar','Rahaf'] }
+    ]
+  },
+  nails: {
+    title: 'Nail Services',
+    services: [
+      { name:'Classic Manicure', description:'Nail trimming, filing, buffing, and cuticle removal.', price:'92 SAR', times:['10:00 AM','12:00 PM','02:00 PM'], workers:['Sara','Lama'] },
+      { name:'Classic Pedicure', description:'Nail care with trimming, filing, and moisturizing.', price:'92 SAR', times:['11:00 AM','01:00 PM','03:00 PM'], workers:['Joud','Nora'] },
+      { name:'Gel Manicure', description:'Long-lasting gel polish application.', price:'115 SAR', times:['10:00 AM','12:00 PM','02:00 PM'], workers:['Sara','Nora'] }
+    ]
+  },
+  lashes: {
+    title: 'Lash Services',
+    services: [
+      { name: 'Monthly Lashes', description:'Full set of monthly eyelash extensions.', price:'460 SAR', times:['10:00 AM','12:00 PM'], workers:['Nora','Warda'] },
+      { name: 'Weekly Lashes', description:'Maintenance for weekly lash touch-ups.', price:'290 SAR', times:['09:00 AM','02:00 PM'], workers:['Warda','Nora'] }
+    ]
+  },
+  eyebrows: {
+    title: 'Eyebrow Services',
+    services: [
+      { name: 'Bleach Eyebrows', description:'Lighten your eyebrows naturally.', price:'40 SAR', times:['10:00 AM','12:00 PM'], workers:['Sara','Lama'] },
+      { name: 'Eyebrow Color', description:'Add color to enhance eyebrow shape.', price:'50 SAR', times:['11:00 AM','01:00 PM'], workers:['Sara','Joud'] }
+    ]
+  },
+  skincare: {
+    title: 'Skin Care Services',
+    services: [
+      { name:'Superficial Facial', description:'Gentle facial for refreshed skin.', price:'175 SAR', times:['10:00 AM','12:00 PM','02:00 PM'], workers:['Sara','Lama'] },
+      { name:'Deep Facial', description:'Deep cleansing and rejuvenating facial.', price:'285 SAR', times:['11:00 AM','01:00 PM','03:00 PM'], workers:['Joud','Nora'] }
+    ]
+  }
+};
+
+const params = new URLSearchParams(window.location.search);
+const type = params.get('type');
+
+// تغيير الخلفية حسب الصفحة
+if(pageBackgrounds[type]){
+  document.body.style.backgroundImage = `url('${pageBackgrounds[type]}')`;
+  document.body.style.backgroundRepeat = 'repeat';  // لتكرار الصورة
+  document.body.style.backgroundPosition = 'top left';
+  document.body.style.backgroundSize = '250px 250px'; // حجم الصورة صغير
+  document.body.style.backgroundColor = '#f5f1f8'; // لون أساسي
+}
+
+const section = data[type];
+const container = document.getElementById('content');
+
+if(!section){
+  container.innerHTML = "<p style='text-align:center; color:red;'>Service not found!</p>";
+}else{
+  section.services.forEach((s, idx) => {
+    const price = s.options ? s.options[0].price : s.price;
+    const desc = s.description ? s.description : 'A nice service for your beauty needs.'; 
+    container.innerHTML += `
+      <div class="service-item">
+        <div class="service-name">${s.name}</div>
+        <div class="service-description">${desc}</div>
+        <div class="price-tag">${price}</div>
+        <button class="book-btn" onclick="openModal(${idx})">Book Now</button>
+      </div>
+    `;
+  });
+}
+
+const modal = document.getElementById('bookingModal');
+const closeModalBtn = document.getElementById('closeModal');
+const modalServiceName = document.getElementById('modalServiceName');
+const modalPrice = document.getElementById('modalPrice');
+const modalDate = document.getElementById('modalDate');
+const modalTime = document.getElementById('modalTime');
+const modalWorker = document.getElementById('modalWorker');
+const confirmBooking = document.getElementById('confirmBooking');
+const modalOptionsContainer = document.getElementById('modalOptionsContainer');
+
+const today = new Date();
+const maxBookingDate = new Date();
+maxBookingDate.setMonth(maxBookingDate.getMonth() + 2);
+modalDate.min = formatDate(today);
+modalDate.max = formatDate(maxBookingDate);
+
+function formatDate(date){
+  const y = date.getFullYear();
+  const m = ("0"+(date.getMonth()+1)).slice(-2);
+  const d = ("0"+date.getDate()).slice(-2);
+  return `${y}-${m}-${d}`;
+}
+
+let currentService;
+function openModal(idx){
+  currentService = section.services[idx];
+  modalServiceName.textContent = currentService.name;
+  modalPrice.textContent = currentService.options ? currentService.options[0].price : currentService.price;
+  modalTime.innerHTML = currentService.times.map(t=>`<option>${t}</option>`).join('');
+  modalWorker.innerHTML = currentService.workers.map(w=>`<option>${w}</option>`).join('');
+
+  if(currentService.options){
+    modalOptionsContainer.innerHTML = `<label>Select Option:</label>
+      <select id="modalOption">
+        ${currentService.options.map(o=>`<option value="${o.price}">${o.name} - ${o.price}</option>`).join('')}
+      </select>`;
+    const modalOption = document.getElementById('modalOption');
+    modalOption.onchange = () => { modalPrice.textContent = modalOption.value; }
+  } else {
+    modalOptionsContainer.innerHTML = '';
+  }
+
+  modal.style.display = 'flex';
+}
+
+closeModalBtn.onclick = () => { modal.style.display='none'; }
+window.onclick = function(event){
+  if(event.target == modal){ modal.style.display='none'; }
+}
+confirmBooking.onclick = () => {
+  if(!modalDate.value){
+    alert("Please select a date");
+    return;
+  }
+  window.location.href = "payment.html";
+}
+</script>
+
+</body>
+</html>
