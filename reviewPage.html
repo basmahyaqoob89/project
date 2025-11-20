@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>جميع الآراء - AMARA</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;600&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* COLORS - Luxury Rose Gold */
+    :root {
+      --rose-bg: #f7f3f5;
+      --rose-soft: #d7a6b3;
+      --rose-dark: #b66b84;
+      --green-dark: #1f3c3c;
+      --white: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--rose-bg);
+      color: var(--green-dark);
+      direction: rtl;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      background: var(--white);
+      box-shadow: 0 2px 12px #00000013;
+    }
+
+    header h2 {
+      margin: 0;
+      font-family: 'Cormorant', serif;
+      font-size: 30px;
+      color: var(--green-dark);
+    }
+
+    header nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #143230;
+      font-weight: 600;
+      font-family: 'Lato', sans-serif;
+      transition: 0.3s;
+    }
+
+    header nav a:hover {
+      color: var(--green-dark);
+    }
+
+    /* PAGE TITLE */
+    .page-title {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 32px;
+      font-family: 'Cormorant', serif;
+      color: var(--rose-dark);
+    }
+
+    /* REVIEWS */
+    .reviews-container {
+      width: 80%;
+      margin: auto;
+    }
+
+    .review-card {
+      background: var(--white);
+      padding: 25px;
+      margin: 15px 0;
+      border-radius: 14px;
+      box-shadow: 0 3px 12px #00000015;
+      font-size: 18px;
+      line-height: 1.7;
+      border-right: 5px solid var(--rose-soft);
+    }
+
+    .review-card strong {
+      color: var(--rose-dark);
+      font-size: 20px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #536b53;
+      color: var(--white);
+      padding: 28px;
+      text-align: center;
+      margin-top: 50px;
+      font-size: 14px;
+      font-family: 'Montserrat';
+    }
+    
+    
+    .book-now-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.book-now-btn {
+    background-color: #143230; /* اللون الأخضر الغامق */
+    color: white;
+    padding: 14px 28px;
+    border-radius: 40px;
+    font-size: 18px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s ease;
+    font-weight: 500;
+}
+
+.book-now-btn:hover {
+    background-color: #536b53; /* أخضر فاتح */
+    transform: translateY(-3px);
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h2>AMARA</h2>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Appointments</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <!-- PAGE TITLE -->
+  <h2 class="page-title">جميع آراء العملاء</h2>
+
+  <!-- REVIEWS -->
+  <div class="reviews-container">
+    <div class="review-card">⭐️⭐️⭐️⭐️⭐️ <br> أفضل صالون تعاملت معاه! الخدمة ممتازة.</div>
+    <div class="review-card">⭐️⭐️⭐️⭐️⭐️ <br> سريع، نظيف، والموظفات محترفات جدًا!</div>
+    <div class="review-card">⭐️⭐️⭐️⭐️⭐️ <br> تجربة جميلة وراح أكررها دائماً 💖</div>
+    <div class="review-card">⭐️⭐️⭐️⭐️⭐️ <br> شغل مرتب وتعامل راقي جدًا.</div>
+    <div class="review-card">⭐️⭐️⭐️⭐️⭐️ <br> أحلى صالون زرته! أنصح فيه. ✨</div>
+  </div>
+
+<!-- زر الحجز الآن -->
+<div class="book-now-container">
+    <a href="ServicesPage.html" class="book-now-btn">قم بالحجز الآن</a>
+</div>
+
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 AMARA Beauty Salon — All Rights Reserved
+  </footer>
+
+</body>
+</html>
+
